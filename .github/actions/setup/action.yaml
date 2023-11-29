@@ -1,0 +1,14 @@
+name: Setup
+description: Setup Action
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node LTS
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.10.0
+        cache: yarn
+
+    - name: Installing dependencies
+      run: yarn install
+      shell: bash

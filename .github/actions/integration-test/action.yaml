@@ -1,0 +1,8 @@
+name: Integration Test
+description: Integration Test Action
+runs:
+  using: 'composite'
+  steps:
+    - name: Integration Testing
+      run: yarn test:integration
+      shell: bash

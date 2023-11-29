@@ -1,0 +1,27 @@
+name: Dependabot Automerge Pull Requests
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  dependabot-automerge-prs:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    steps:
+      - name: Fetch Git repository and checkout
+        uses: 'actions/checkout@v4'
+
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: Lint
+        uses: ./.github/actions/lint
+      - name: Unit Test
+        uses: ./.github/actions/unit-test
+
+      - name: Merge Dependabot Pull Requests
+        uses: fastify/github-action-merge-dependabot@v3

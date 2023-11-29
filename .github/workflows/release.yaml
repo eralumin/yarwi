@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      packages: write
+    steps:
+      - name: Fetch Git repository and checkout
+        uses: 'actions/checkout@v4'
+
+      - name: Setup
+        uses: ./.github/actions/setup
+      - name: Lint
+        uses: ./.github/actions/lint
+      - name: Unit Test
+        uses: ./.github/actions/unit-test
+      - name: Coverage
+        uses: ./.github/actions/coverage
+      # - name: Release
+      #   uses: ./.github/actions/release
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}

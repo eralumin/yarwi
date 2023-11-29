@@ -1,0 +1,12 @@
+name: Lint
+description: Lint and Type Check Action
+runs:
+  using: 'composite'
+  steps:
+    - name: Linting
+      run: yarn lint
+      shell: bash
+
+    - name: Type Checking
+      run: yarn check
+      shell: bash

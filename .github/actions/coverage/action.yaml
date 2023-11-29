@@ -1,0 +1,8 @@
+name: Coverage
+description: Coverage Action
+runs:
+  using: 'composite'
+  steps:
+    - name: Coverage
+      run: yarn test:unit --coverage --run
+      shell: bash

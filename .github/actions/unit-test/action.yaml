@@ -1,0 +1,8 @@
+name: Unit Test
+description: Unit Test Action
+runs:
+  using: 'composite'
+  steps:
+    - name: Unit Testing
+      run: yarn test:unit
+      shell: bash

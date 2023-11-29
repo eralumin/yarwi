@@ -1,3 +1,7 @@
 FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:1-20
 
 RUN git config --global pull.rebase true
+
+RUN yarn install
+RUN yarn playwright install
+RUN yarn playwright install-deps

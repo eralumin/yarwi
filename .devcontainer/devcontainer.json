@@ -1,20 +1,17 @@
 {
-    "name": "Dev Container",
-    "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
-    "forwardPorts": [
-        3000,
-        6006
-    ], // Default ports for Svelte and Storybook
-    "postCreateCommand": "yarn install",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "svelte.svelte-vscode",
-                "dbaeumer.vscode-eslint",
-                "esbenp.prettier-vscode",
-                "ZixuanChen.vitest-explorer"
-            ]
-        }
-    },
-    "remoteUser": "node"
+	"name": "Dev Container",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:20",
+	"forwardPorts": [3000, 6006], // Default ports for Svelte and Storybook
+	"postCreateCommand": "yarn install",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"svelte.svelte-vscode",
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"ZixuanChen.vitest-explorer"
+			]
+		}
+	},
+	"remoteUser": "node"
 }

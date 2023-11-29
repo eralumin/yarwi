@@ -23,7 +23,7 @@ jobs:
       - name: Unit Test
         uses: ./.github/actions/unit-test
       - name: Integration Test
-        uses: ./.github/actions/Integration-test
+        uses: ./.github/actions/integration-test
       - name: Coverage
         uses: ./.github/actions/coverage
       # - name: Release

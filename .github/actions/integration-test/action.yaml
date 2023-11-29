@@ -3,6 +3,14 @@ description: Integration Test Action
 runs:
   using: 'composite'
   steps:
+    - name: Setup Browser
+      run: yarn playwright install
+      shell: bash
+
+    - name: Setup Browser Dependencies
+      run: yarn playwright install-deps
+      shell: bash
+
     - name: Integration Testing
       run: yarn test:integration
       shell: bash

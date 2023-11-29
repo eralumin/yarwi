@@ -1,15 +1,20 @@
 {
     "name": "Dev Container",
     "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
-    "settings": { 
-        "terminal.integrated.shell.linux": "/bin/bash"
-    },
-    "forwardPorts": [3000, 6006], // Default ports for Svelte and Storybook
+    "forwardPorts": [
+        3000,
+        6006
+    ], // Default ports for Svelte and Storybook
     "postCreateCommand": "yarn install",
-    "extensions": [
-        "svelte.svelte-vscode",
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
-    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "svelte.svelte-vscode",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "ZixuanChen.vitest-explorer"
+            ]
+        }
+    },
     "remoteUser": "node"
 }

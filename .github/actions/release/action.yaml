@@ -2,10 +2,10 @@ name: Release
 description: Release Action
 inputs:
   github_token:
-    description: "GitHub Token"
+    description: 'GitHub Token'
     required: true
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Build
       run: yarn build

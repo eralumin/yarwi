@@ -22,6 +22,8 @@ jobs:
         uses: ./.github/actions/lint
       - name: Unit Test
         uses: ./.github/actions/unit-test
+      - name: Integration Test
+        uses: ./.github/actions/Integration-test
 
       - name: Merge Dependabot Pull Requests
         uses: fastify/github-action-merge-dependabot@v3

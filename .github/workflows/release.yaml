@@ -22,6 +22,8 @@ jobs:
         uses: ./.github/actions/lint
       - name: Unit Test
         uses: ./.github/actions/unit-test
+      - name: Integration Test
+        uses: ./.github/actions/Integration-test
       - name: Coverage
         uses: ./.github/actions/coverage
       # - name: Release

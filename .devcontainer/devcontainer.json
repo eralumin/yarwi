@@ -1,6 +1,8 @@
 {
 	"name": "Dev Container",
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:20",
+	"build": {
+		"dockerfile": "Dockerfile.dev"
+	},
 	"forwardPorts": [3000, 6006], // Default ports for Svelte and Storybook
 	"customizations": {
 		"vscode": {

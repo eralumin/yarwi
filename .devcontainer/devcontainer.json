@@ -14,5 +14,6 @@
 			]
 		}
 	},
-	"remoteUser": "node"
+	"remoteUser": "node",
+	"postCreateCommand": "yarn install && yarn playwright install && yarn playwright install-deps"
 }

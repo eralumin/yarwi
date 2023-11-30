@@ -5,28 +5,56 @@ on:
     branches: [main]
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Git repository and checkout
+        uses: 'actions/checkout@v4'
+      - name: Setup
+        uses: ./.github/actions/setup
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - name: Lint
+        uses: ./.github/actions/lint
+
+  unit-test:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - name: Unit Test
+        uses: ./.github/actions/unit-test
+
+  integration-test:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - name: Integration Test
+        uses: ./.github/actions/integration-test
+
+  coverage:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - name: Coverage
+        uses: ./.github/actions/coverage
+
   release:
     runs-on: ubuntu-latest
+    needs:
+      - lint
+      - unit-test
+      - integration-test
+      - coverage
     permissions:
       contents: write
       issues: write
       pull-requests: write
       packages: write
     steps:
-      - name: Fetch Git repository and checkout
-        uses: 'actions/checkout@v4'
-
-      - name: Setup
-        uses: ./.github/actions/setup
-      - name: Lint
-        uses: ./.github/actions/lint
-      - name: Unit Test
-        uses: ./.github/actions/unit-test
-      - name: Integration Test
-        uses: ./.github/actions/integration-test
-      - name: Coverage
-        uses: ./.github/actions/coverage
-      # - name: Release
-      #   uses: ./.github/actions/release
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release
+        uses: ./.github/actions/release
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}

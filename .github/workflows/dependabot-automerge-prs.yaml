@@ -5,25 +5,44 @@ on:
       - main
 
 jobs:
-  dependabot-automerge-prs:
+  setup:
     runs-on: ubuntu-latest
-
-    permissions:
-      pull-requests: write
-      contents: write
-
     steps:
       - name: Fetch Git repository and checkout
         uses: 'actions/checkout@v4'
-
       - name: Setup
         uses: ./.github/actions/setup
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
       - name: Lint
         uses: ./.github/actions/lint
+
+  unit-test:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
       - name: Unit Test
         uses: ./.github/actions/unit-test
-      - name: Integration Test
-        uses: ./.github/actions/Integration-test
 
+  integration-test:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - name: Integration Test
+        uses: ./.github/actions/integration-test
+
+  dependabot-automerge-prs:
+    runs-on: ubuntu-latest
+    needs:
+      - lint
+      - unit-test
+      - integration-test
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
       - name: Merge Dependabot Pull Requests
         uses: fastify/github-action-merge-dependabot@v3

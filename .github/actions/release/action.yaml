@@ -7,6 +7,15 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Fetch Git repository and checkout
+      uses: 'actions/checkout@v4'
+
+    - uses: actions/cache@v3
+      with:
+        path: |
+          node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+
     - name: Build
       run: yarn build
       shell: bash

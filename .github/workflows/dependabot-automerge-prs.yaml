@@ -8,8 +8,6 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch Git repository and checkout
-        uses: 'actions/checkout@v4'
       - name: Setup
         uses: ./.github/actions/setup
 
@@ -33,6 +31,13 @@ jobs:
     steps:
       - name: Integration Test
         uses: ./.github/actions/integration-test
+
+  coverage:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    steps:
+      - name: Integration Test
+        uses: ./.github/actions/coverage
 
   dependabot-automerge-prs:
     runs-on: ubuntu-latest

@@ -1,4 +1,8 @@
 export enum Enum {
+	defaultInverseLight = 'defaultInverseLight',
+	defaultInverse = 'defaultInverse',
+	defaultInverseDark = 'defaultInverseDark',
+	defaultLight = 'defaultLight',
 	default = 'default',
 	defaultDark = 'defaultDark',
 	slate = 'slate',
@@ -26,6 +30,7 @@ export enum Enum {
 }
 
 export enum text {
+	defaultLight = 'text-gray-700 dark:text-gray-50',
 	default = 'text-gray-800 dark:text-gray-100',
 	defaultDark = 'text-gray-900 dark:text-gray-200',
 	slate = 'text-slate-500 dark:text-slate-400',
@@ -53,6 +58,7 @@ export enum text {
 }
 
 export enum background {
+	defaultLight = 'bg-gray-50 dark:bg-gray-700',
 	default = 'bg-gray-100 dark:bg-gray-800',
 	defaultDark = 'bg-gray-200 dark:bg-gray-900',
 	slate = 'bg-slate-500 dark:bg-slate-400',
@@ -80,6 +86,10 @@ export enum background {
 }
 
 export enum border {
+	defaultInverseLight = 'border-gray-50 dark:border-gray-700',
+	defaultInverse = 'border-gray-100 dark:border-gray-800',
+	defaultInverseDark = 'border-gray-200 dark:border-gray-900',
+	defaultLight = 'border-gray-700 dark:border-gray-50',
 	default = 'border-gray-800 dark:border-gray-100',
 	defaultDark = 'border-gray-900 dark:border-gray-200',
 	slate = 'border-slate-500 dark:border-slate-400',
@@ -107,6 +117,7 @@ export enum border {
 }
 
 export enum hoverText {
+	defaultLight = 'hover:text-gray-700 hover:dark:text-gray-50',
 	default = 'hover:text-gray-800 hover:dark:text-gray-100',
 	defaultDark = 'hover:text-gray-900 hover:dark:text-gray-200',
 	slate = 'hover:text-slate-500 hover:dark:text-slate-400',
@@ -134,8 +145,37 @@ export enum hoverText {
 }
 
 export enum hoverBackground {
+	defaultLight = 'hover:bg-gray-200 dark:hover:bg-gray-600',
 	default = 'hover:bg-gray-300 dark:hover:bg-gray-700',
 	defaultDark = 'hover:bg-gray-200 hover:dark:bg-gray-900',
+	slate = 'hover:bg-slate-500 hover:dark:bg-slate-400',
+	gray = 'hover:bg-gray-500 hover:dark:bg-gray-400',
+	zinc = 'hover:bg-zinc-500 hover:dark:bg-zinc-400',
+	neutral = 'hover:bg-neutral-500 hover:dark:bg-neutral-400',
+	stone = 'hover:bg-stone-500 hover:dark:bg-stone-400',
+	red = 'hover:bg-red-500 hover:dark:bg-red-400',
+	orange = 'hover:bg-orange-500 hover:dark:bg-orange-400',
+	amber = 'hover:bg-amber-500 hover:dark:bg-amber-400',
+	yellow = 'hover:bg-yellow-500 hover:dark:bg-yellow-400',
+	lime = 'hover:bg-lime-500 hover:dark:bg-lime-400',
+	green = 'hover:bg-green-500 hover:dark:bg-green-400',
+	emerald = 'hover:bg-emerald-500 hover:dark:bg-emerald-400',
+	teal = 'hover:bg-teal-500 hover:dark:bg-teal-400',
+	cyan = 'hover:bg-cyan-500 hover:dark:bg-cyan-400',
+	sky = 'hover:bg-sky-500 hover:dark:bg-sky-400',
+	blue = 'hover:bg-blue-500 hover:dark:bg-blue-400',
+	indigo = 'hover:bg-indigo-500 hover:dark:bg-indigo-400',
+	violet = 'hover:bg-violet-500 hover:dark:bg-violet-400',
+	purple = 'hover:bg-purple-500 hover:dark:bg-purple-400',
+	fuchsia = 'hover:bg-fuchsia-500 hover:dark:bg-fuchsia-400',
+	pink = 'hover:bg-pink-500 hover:dark:bg-pink-400',
+	rose = 'hover:bg-rose-50 hover:dark:bg-rose-400'
+}
+
+export enum shadow {
+	defaultLight = 'shadow-gray-700 dark:shadow-gray-700',
+	default = 'shadow-gray-800 dark:shadow-gray-800',
+	defaultDark = 'shadow-gray-950 dark:shadow-gray-950',
 	slate = 'hover:bg-slate-500 hover:dark:bg-slate-400',
 	gray = 'hover:bg-gray-500 hover:dark:bg-gray-400',
 	zinc = 'hover:bg-zinc-500 hover:dark:bg-zinc-400',

@@ -1,52 +1,38 @@
 <script lang="ts">
 	import '../app.pcss';
 
+	import { onMount } from 'svelte';
+	import { derived } from 'svelte/store';
 	import * as action from '$lib/action';
-	import { userCardVisible } from '$lib/store';
+
+	import { userCardVisible, theme, userCardMenu } from '$lib/store';
 	import * as color from '$lib/theme/color';
 
-	import DarkModeToggle from '$lib/molecule/DarkModeToggle.svelte';
 	import UserProfile from '$lib/molecule/UserProfile.svelte';
 	import UserCard from '$lib/molecule/UserCard.svelte';
-	import type { MenuItem } from '$lib/type';
-	import Button from '$lib/atom/Button.svelte';
 
-	const darkModeTogglePosition = 'fixed top-6 left-6';
+	import { homeMenuItems, boardsMenuItems, avatarUrl, email } from '$lib/dev';
+	import { UserCardMenu } from '$lib/enums';
+
 	const userProfilePosition = 'fixed top-6 right-6 z-40';
-	const userCardPosition = 'fixed w-full sm:w-auto sm:top-2 sm:right-2 z-30';
+	const userCardPosition = 'fixed sm:top-2 sm:right-2 z-30';
+	const userCardSize = 'w-full sm:w-[24rem]';
 
-	const avatarUrl = 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg';
-	const email = 'kevin.marilleau@example.com';
-	const homeMenuItems: MenuItem[][] = [
-		[
-			{
-				component: Button,
-				props: { text: 'Edit', icon: 'material-symbols:edit-rounded' },
-				commonProps: { color: color.Enum.sky }
-			}
-		],
-		[
-			{
-				component: Button,
-				props: { text: 'Account', icon: 'material-symbols:switch-account-rounded' }
-			},
-			{
-				component: Button,
-				props: { text: 'Boards', icon: 'material-symbols:dashboard-rounded' }
-			}
-		],
-		[
-			{
-				component: Button,
-				props: { text: 'Settings', icon: 'material-symbols:settings-outline-rounded' }
-			},
-			{
-				component: Button,
-				props: { text: 'Logout', icon: 'material-symbols:logout-rounded' },
-				commonProps: { color: color.Enum.red }
-			}
-		]
-	];
+	export const currentMenuItems = derived(userCardMenu, ($userCardMenu) => {
+		switch ($userCardMenu) {
+			case UserCardMenu.Home:
+				return homeMenuItems;
+			case UserCardMenu.Boards:
+				return boardsMenuItems;
+			default:
+				return homeMenuItems;
+		}
+	});
+
+	onMount(() => {
+		theme.initializeTheme();
+	});
+
 	function toggleUserCardVisibility(event: MouseEvent) {
 		event.stopPropagation();
 		userCardVisible.toggle();
@@ -60,19 +46,15 @@
 	class="relative min-h-screen min-w-screen select-none {color.background.default} {color.text
 		.default}"
 >
-	<div class={darkModeTogglePosition}>
-		<DarkModeToggle />
-	</div>
-
 	<div class={userProfilePosition} id="user-profile">
 		<UserProfile {avatarUrl} {toggleUserCardVisibility} />
 	</div>
 
 	<div
-		class={userCardPosition}
+		class={`${userCardPosition} ${userCardSize}`}
 		use:action.clickOutside={'#user-profile'}
 		on:click_outside={hideCardWhenOutsideClick}
 	>
-		<UserCard {email} {homeMenuItems} />
+		<UserCard {email} menuItems={$currentMenuItems} />
 	</div>
 </div>

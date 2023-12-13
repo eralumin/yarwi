@@ -16,7 +16,7 @@ import type {
 } from 'svelte/transition';
 import type { SvelteComponent } from 'svelte';
 import type * as theme from '$lib/theme';
-import type { TooltipPosition } from './enums';
+import type { TooltipPosition, ComponentSize } from './enums';
 
 // Config
 export type SvelteAction = (node: HTMLElement, parameters?: unknown) => { destroy?: () => void };
@@ -69,6 +69,7 @@ export type DynamicBehaviorWrapperProps = {
 export type CommonProps = {
 	id?: string;
 	color?: theme.color.Enum;
+	size?: ComponentSize;
 	tooltipText?: string;
 	borderRadius?: theme.border.BorderRadius;
 	containerClasses?: string[];

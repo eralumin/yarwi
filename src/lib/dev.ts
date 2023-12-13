@@ -48,7 +48,7 @@ export const homeMenuItems: ItemProps[][] = [
 			},
 			dynamicBehaviorProps: {
 				actions: [{ action: action.fadeInOut, parameters: [180] }],
-				eventListeners: [{ eventType: 'click', handler: store.theme.toggleDarkMode }]
+				eventListeners: [{ eventType: 'click', handler: store.theme.toggle }]
 			}
 		},
 		{
@@ -79,23 +79,33 @@ export const boardsMenuItems: ItemProps[][] = [
 		{
 			component: Text,
 			props: { text: 'Electronic' }
-		},
+		}
+	],
+	[
 		{
 			component: Text,
 			props: { text: 'Studio' }
-		},
+		}
+	],
+	[
 		{
 			component: Text,
 			props: { text: 'Soundtracks' }
-		},
+		}
+	],
+	[
 		{
 			component: Text,
 			props: { text: 'Live' }
-		},
+		}
+	],
+	[
 		{
 			component: Text,
 			props: { text: 'Band' }
-		},
+		}
+	],
+	[
 		{
 			component: Toolbar,
 			props: [

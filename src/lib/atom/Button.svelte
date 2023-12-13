@@ -21,12 +21,13 @@
 		isToggled.update((n) => !n);
 	}
 
-	$: size = 'w-full h-full px-8 py-4 text-lg sm:text-sm';
-	$: flex = `flex place-content-center justify-center ${
+	let size: enums.ComponentSize = commonProps.size || enums.ComponentSize.MD;
+
+	$: sizeClasses = enums.ButtonSizeClasses[size];
+	$: containerClass = `min-w-0 group w-full h-full ${commonProps.containerClasses?.join(' ')}`;
+	$: flex = `flex w-full h-full items-center justify-center ${
 		props.icon && props.text ? 'sm:justify-between' : ''
 	}`;
-	$: textStyle = `${props.icon ? 'hidden sm:block' : ''}`;
-	$: iconStyle = 'w-6 h-6';
 	$: backgroundColor = theme.color.background.default;
 	$: textColor =
 		$isToggled && commonProps.alternateColor
@@ -37,16 +38,16 @@
 			? theme.color.hoverBackground[commonProps.alternateColor]
 			: theme.color.hoverBackground[commonProps.color || theme.color.Enum.default];
 	$: hoverTextColor = theme.color.hoverText.default;
-
-	$: containerStyle = `min-w-0 group ${commonProps.containerClasses?.join(' ')}`;
-	$: buttonStyle = `${size} ${flex} ${commonProps.borderRadius} ${backgroundColor} ${textColor} ${hoverColor} ${hoverTextColor}`;
+	$: buttonClass = `${sizeClasses.button} ${flex} ${commonProps.borderRadius} ${backgroundColor} ${textColor} ${hoverColor} ${hoverTextColor}`;
+	$: textClass = `${sizeClasses.text} ${props.icon ? 'hidden sm:block' : ''}`;
+	$: iconClass = sizeClasses.icon;
 </script>
 
-<div bind:this={rootElement} class={containerStyle}>
+<div bind:this={rootElement} class={containerClass}>
 	<div class="relative">
 		<button
 			id={commonProps.id}
-			class={buttonStyle}
+			class={buttonClass}
 			on:click={toggle}
 			on:mouseenter={() => (isTooltipVisible = true)}
 			on:mouseleave={() => (isTooltipVisible = false)}
@@ -54,11 +55,11 @@
 			{#if props.icon}
 				<Icon
 					icon={$isToggled && props.alternateIcon ? props.alternateIcon : props.icon}
-					class={iconStyle}
+					class={iconClass}
 				/>
 			{/if}
 			{#if props.text}
-				<span class={textStyle}>
+				<span class={textClass}>
 					{$isToggled && props.alternateText ? props.alternateText : props.text}
 				</span>
 			{/if}

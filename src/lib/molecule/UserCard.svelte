@@ -1,30 +1,42 @@
 <script lang="ts">
 	import * as eases from 'svelte/easing';
 	import { fly } from 'svelte/transition';
-	import { userCardVisible } from '$lib/store';
 	import * as theme from '$lib/theme';
-	import MenuItems from '$lib/molecule/Menu.svelte';
-	import type { ItemProps } from '$lib/types';
+	import { Menu } from '$lib/molecule/Menu.svelte';
+	import type { UserCardProps, UserProfileProps } from '$lib/types';
+	import UserProfile from '$lib/atom/UserProfile.svelte';
+	import { colSizeMobile } from '$lib/theme/layout/grid';
 
-	export let email: string;
-	export let menuItems: ItemProps[][];
+	export let props: UserCardProps;
+	export let userProfileProps: UserProfileProps;
 
+	const grid = [
+		'grid',
+		'grid-nowrap',
+		theme.layout.grid.colSizeMobile[12],
+		theme.layout.gap.sm
+	].join(' ');
 	const emailSize = 'ml-4 mr-24';
 	const cardSize = 'p-4 pt-5 max-w-full';
-	const menuContainerSize = 'mt-16';
+	const menuContainerSize = 'mt-16 col-span-12';
 	const transitionSettings = { x: 200, duration: 250, easing: eases.expoOut };
 </script>
 
-{#if $userCardVisible}
-	<div
-		class="rounded-lg shadow-lg {cardSize} {theme.color.background.defaultDark}"
-		in:fly={transitionSettings}
-		out:fly={transitionSettings}
+<div
+	class="rounded-lg shadow-lg {cardSize} {theme.color.background.defaultDark} {grid}"
+	in:fly={transitionSettings}
+	out:fly={transitionSettings}
+>
+	<!-- Header -->
+	<span class="{theme.layout.grid.colSpanMobile[10]} text-center {emailSize} {theme.color.text.sky}"
+		>{props.email}</span
 	>
-		<span class="{emailSize} {theme.color.text.sky}">{email}</span>
-
-		<div class={menuContainerSize}>
-			<MenuItems props={menuItems} />
-		</div>
+	<div class={theme.layout.grid.colSpanMobile[2]}>
+		<UserProfile props={userProfileProps} />
 	</div>
-{/if}
+
+	<!-- Body -->
+	<div class={menuContainerSize}>
+		<Menu props={props.menuProps} />
+	</div>
+</div>

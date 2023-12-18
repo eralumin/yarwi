@@ -1,0 +1,21 @@
+- darkmode: x
+- userprofile:
+    - edit:
+    - settings:
+    - oauth:
+    - boards:
+        - board 1:
+            - open: x
+            - rename: x
+            - delete: x
+            - duplicate: x
+            - share settings:
+              - open modal:
+    - devices:
+- share interface:
+    - private with link
+    - public
+    - share to community
+- boardView
+- editView
+- communityBoardsView

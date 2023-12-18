@@ -17,6 +17,8 @@ import type {
 import type { SvelteComponent } from 'svelte';
 import type * as theme from '$lib/theme';
 import type { TooltipPosition, ComponentSize } from './enums';
+import type Icon from '@iconify/svelte';
+import type { UserProfile } from './molecule';
 
 // Config
 export type SvelteAction = (node: HTMLElement, parameters?: unknown) => { destroy?: () => void };
@@ -101,4 +103,38 @@ export type ItemProps = {
 	dynamicBehaviorProps: DynamicBehaviorWrapperProps;
 };
 
-export type ComponentProps = ButtonProps | ItemProps;
+export type UserProfileProps = {
+	avatarUrl: string;
+	toggleUserCardVisibility: (event: MouseEvent) => void;
+};
+
+export type UserCardProps = {
+	email: string;
+	userProfileProps: UserProfileProps;
+	menuProps: MenuProps;
+};
+
+export type MenuProps = {
+	header: ItemProps[];
+	body: ItemProps[][];
+};
+
+export type BreacrumbItemProps = {
+	icon: string;
+	name: string;
+	commonProps: CommonProps;
+	dynamicBehaviorProps: DynamicBehaviorWrapperProps;
+}
+
+export type BreacrumbProps = {
+	props: BreacrumbItemProps[];
+	commonProps: CommonProps;
+}
+
+export type ComponentProps =
+	| ButtonProps
+	| UserProfileProps
+	| TextProps
+	| TooltipProps
+	| UserCardProps
+	| ItemProps;

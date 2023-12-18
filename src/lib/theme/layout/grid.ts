@@ -51,7 +51,7 @@ export const rowSizeDesktop = {
 	6: 'sm:grid-rows-6'
 };
 
-export const colSpan = {
+export const colSpanMobile = {
 	Auto: 'col-span-1',
 	Full: 'col-span-full',
 	1: 'col-span-1',
